@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Notícias cidade - Seu site de notícias</title>
+        <link rel="stylesheet" href="styless.css">
+    </head>
+
+<body>
+
+    <h1>Fundamentos da Orientação a Objetos</h1>
+
+    <div class="container">
+
+        <!-- Classe Base -->
+        <div class="classe">
+            <h2>Animal</h2>
+            <p><strong>Atributos:</strong> nome</p>
+            <p><strong>Métodos:</strong> fazerSom(), mover()</p>
+            <button onclick="mostrarSom('animal')">Fazer Som</button>
+            <button onclick="mostrarMovimento('animal')">Mover</button>
+        </div>
+
+        <!-- Classes Filhas (Herança) -->
+        <div class="classe heranca">
+            <h2>Cachorro Skoob</h2>
+            <p><strong>Herda de:</strong> Animal</p>
+            <p><strong>Métodos sobrescritos:</strong> fazerSom(), mover()</p>
+            <button onclick="mostrarSom('cachorro')">Fazer Som</button>
+            <button onclick="mostrarMovimento('cachorro')">Mover</button>
+        </div>
+
+        
+        <div class="classe heranca">
+            <h2>Max</h2>
+            <p><strong>Herda de:</strong> Animal</p>
+            <p><strong>Métodos sobrescritos:</strong> fazerSom(), mover()</p>
+            <button onclick="mostrarSom('max')">Fazer Som</button>
+            <button onclick="mostrarMovimento('max')">Mover</button>
+        </div>
+
+        <div class="classe heranca">
+            <h2>Bolinha</h2>
+            <p><strong>Herda de:</strong> Animal</p>
+            <p><strong>Métodos sobrescritos:</strong> fazerSom(), mover()</p>
+            <button onclick="mostrarSom('bolinha')">Fazer Som</button>
+            <button onclick="mostrarMovimento('bolinha')">Mover</button>
+        </div>
+
+        <div class="classe heranca">
+            <h2>Gato</h2>
+            <p><strong>Herda de:</strong> Animal</p>
+            <p><strong>Métodos sobrescritos:</strong> fazerSom(), mover()</p>
+            <button onclick="mostrarSom('gato')">Fazer Som</button>
+            <button onclick="mostrarMovimento('gato')">Mover</button>
+        </div>
+
+        <div class="classe heranca">
+            <h2>Pássaro</h2>
+            <p><strong>Herda de:</strong> Animal</p>
+            <p><strong>Métodos sobrescritos:</strong> fazerSom(), mover()</p>
+            <button onclick="mostrarSom('passaro')">Fazer Som</button>
+            <button onclick="mostrarMovimento('passaro')">Mover</button>
+        </div>
+    </div>
+
+    <h2>Resultado:</h2>
+    <p id="resultado" style="font-size: 18px; font-weight: bold;"></p>
+
+    <script>
+        // Classe Base (Animal)
+        class Animal {
+        constructor(nome) {
+        this.nome = nome; // Encapsulamento (protegendo o dado dentro da classe)
+        }
+        
+        fazerSom() {
+        return "Este animal faz um som!";
+        }
+        
+        mover() {
+        return "O animal está se movendo!";
+        }
+        }
+        
+        // Classes Filhas (Herança e Polimorfismo)
+        class Cachorro extends Animal {
+        fazerSom() {
+        return `O cachorro ${this.nome} late: Au Au!`;
+        }
+        
+        mover() {
+        return `O cachorro ${this.nome} está correndo!`;
+        }
+        }
+
+        class Max extends Animal {
+        fazerSom() {
+        return `O cachorro ${this.nome} grita: SAI!`;
+        }
+        
+        mover() {
+        return `O cachorro ${this.nome} está correndo!`;
+        }
+        }
+
+        class Bolinha extends Animal {
+        fazerSom() {
+        return `O cachorro ${this.nome} late: woof woof!`;
+        }
+        
+        mover() {
+        return `O cachorro ${this.nome} está dormindo!`;
+        }
+        }
+        
+        class Gato extends Animal {
+        fazerSom() {
+        return `O gato ${this.nome} mia: Miau!`;
+        }
+        
+        mover() {
+        return `O gato ${this.nome} está saltando!`;
+        }
+        }
+        
+        class Passaro extends Animal {
+        fazerSom() {
+        return `O pássaro ${this.nome} canta: Piu Piu!`;
+        }
+        
+        mover() {
+        return `O pássaro ${this.nome} está voando!`;
+        }
+        }
+        
+        // Criando instâncias
+        let animal = new Animal("Genérico");
+        let cachorro = new Cachorro("Skoob");
+        let max = new Max("Max");
+        let bolinha = new Bolinha("Bolinha");
+        let gato = new Gato("Whiskers");
+        let passaro = new Passaro("Azulão");
+        
+        // Funções para exibir os sons e movimentos
+        function mostrarSom(tipo) {
+        let resultado = document.getElementById("resultado");
+        switch (tipo) {
+        case 'cachorro':
+        resultado.innerText = cachorro.fazerSom();
+        break;
+        case 'max':
+        resultado.innerText = max.fazerSom();
+        break;
+        case 'bolinha':
+        resultado.innerText = bolinha.fazerSom();
+        break;
+        case 'gato':
+        resultado.innerText = gato.fazerSom();
+        break;
+        case 'passaro':
+        resultado.innerText = passaro.fazerSom();
+        break;
+        default:
+        resultado.innerText = animal.fazerSom();
+        break;
+        }
+        }
+        
+        function mostrarMovimento(tipo) {
+        let resultado = document.getElementById("resultado");
+        switch (tipo) {
+        case 'cachorro':
+        resultado.innerText = cachorro.mover();
+        break;
+        case 'max':
+        resultado.innerText = max.mover();
+        break;
+        case 'bolinha':
+        resultado.innerText = bolinha.mover();
+        break;
+        case 'gato':
+        resultado.innerText = gato.mover();
+        break;
+        case 'passaro':
+        resultado.innerText = passaro.mover();
+        break;
+        default:
+        resultado.innerText = animal.mover();
+        break;
+        }
+        }
+        </script>
+
+</body>
+</html>
