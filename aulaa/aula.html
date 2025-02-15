@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Notícias cidade - Seu site de notícias</title>
-        <link rel="stylesheet" href="styless.css">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula de Igor POO</title>
+    <link rel="stylesheet" href="styless.css">
+</head>
 
 <body>
-
     <h1>Fundamentos da Orientação a Objetos</h1>
 
     <div class="container">
-
         <!-- Classe Base -->
         <div class="classe">
             <h2>Animal</h2>
@@ -22,32 +20,21 @@
             <button onclick="mostrarMovimento('animal')">Mover</button>
         </div>
 
-        <!-- Classes Filhas (Herança) -->
+        <!-- Card Cachorro com seleção -->
         <div class="classe heranca">
-            <h2>Cachorro Skoob</h2>
+            <h2>Cachorro</h2>
             <p><strong>Herda de:</strong> Animal</p>
-            <p><strong>Métodos sobrescritos:</strong> fazerSom(), mover()</p>
-            <button onclick="mostrarSom('cachorro')">Fazer Som</button>
-            <button onclick="mostrarMovimento('cachorro')">Mover</button>
+            <select id="cachorroSelect">
+                <option value="skoob">Skoob</option>
+                <option value="max">Max</option>
+                <option value="bolinha">Bolinha</option>
+            </select>
+            <p><strong>Métodos:</strong> fazerSom(), mover()</p>
+            <button onclick="mostrarSomCachorro()">Fazer Som</button>
+            <button onclick="mostrarMovimentoCachorro()">Mover</button>
         </div>
 
-        
-        <div class="classe heranca">
-            <h2>Max</h2>
-            <p><strong>Herda de:</strong> Animal</p>
-            <p><strong>Métodos sobrescritos:</strong> fazerSom(), mover()</p>
-            <button onclick="mostrarSom('max')">Fazer Som</button>
-            <button onclick="mostrarMovimento('max')">Mover</button>
-        </div>
-
-        <div class="classe heranca">
-            <h2>Bolinha</h2>
-            <p><strong>Herda de:</strong> Animal</p>
-            <p><strong>Métodos sobrescritos:</strong> fazerSom(), mover()</p>
-            <button onclick="mostrarSom('bolinha')">Fazer Som</button>
-            <button onclick="mostrarMovimento('bolinha')">Mover</button>
-        </div>
-
+        <!-- Outros animais -->
         <div class="classe heranca">
             <h2>Gato</h2>
             <p><strong>Herda de:</strong> Animal</p>
@@ -69,129 +56,121 @@
     <p id="resultado" style="font-size: 18px; font-weight: bold;"></p>
 
     <script>
-        // Classe Base (Animal)
+        // Classes
         class Animal {
-        constructor(nome) {
-        this.nome = nome; // Encapsulamento (protegendo o dado dentro da classe)
+            constructor(nome) {
+                this.nome = nome;
+            }
+            
+            fazerSom() {
+                return "Este animal faz um som!";
+            }
+            
+            mover() {
+                return "O animal está se movendo!";
+            }
         }
-        
-        fazerSom() {
-        return "Este animal faz um som!";
-        }
-        
-        mover() {
-        return "O animal está se movendo!";
-        }
-        }
-        
-        // Classes Filhas (Herança e Polimorfismo)
+
         class Cachorro extends Animal {
-        fazerSom() {
-        return `O cachorro ${this.nome} late: Au Au!`;
-        }
+            constructor(nome) {
+                super(nome);
+            }
+
+            fazerSom() {
+                return `O cachorro ${this.nome} late: Au Au!`;
+            }
         
-        mover() {
-        return `O cachorro ${this.nome} está correndo!`;
-        }
+            mover() {
+                return `O cachorro ${this.nome} está correndo!`;
+            }
         }
 
-        class Max extends Animal {
-        fazerSom() {
-        return `O cachorro ${this.nome} grita: SAI!`;
-        }
+        class Skoob extends Cachorro {
+            fazerSom() {
+                return `Skoob rosna: Grrr!`;
+            }
         
-        mover() {
-        return `O cachorro ${this.nome} está correndo!`;
-        }
+            mover() {
+                return `Skoob está peidando!`;
+            }
         }
 
-        class Bolinha extends Animal {
-        fazerSom() {
-        return `O cachorro ${this.nome} late: woof woof!`;
-        }
+        class Max extends Cachorro {
+            fazerSom() {
+                return `Max grita: SAI!`;
+            }
         
-        mover() {
-        return `O cachorro ${this.nome} está dormindo!`;
+            mover() {
+                return `Max está correndo!`;
+            }
         }
-        }
+
+        class Bolinha extends Cachorro {
+            fazerSom() {
+                return `Bolinha late: woof woof!`;
+            }
         
+            mover() {
+                return `Bolinha está dormindo!`;
+            }
+        }
+
         class Gato extends Animal {
-        fazerSom() {
-        return `O gato ${this.nome} mia: Miau!`;
-        }
+            fazerSom() {
+                return `O gato ${this.nome} mia: Miau!`;
+            }
         
-        mover() {
-        return `O gato ${this.nome} está saltando!`;
-        }
+            mover() {
+                return `O gato ${this.nome} está saltando!`;
+            }
         }
         
         class Passaro extends Animal {
-        fazerSom() {
-        return `O pássaro ${this.nome} canta: Piu Piu!`;
-        }
+            fazerSom() {
+                return `O pássaro ${this.nome} canta: Piu Piu!`;
+            }
         
-        mover() {
-        return `O pássaro ${this.nome} está voando!`;
+            mover() {
+                return `O pássaro ${this.nome} está voando!`;
+            }
         }
-        }
-        
-        // Criando instâncias
-        let animal = new Animal("Genérico");
-        let cachorro = new Cachorro("Skoob");
-        let max = new Max("Max");
-        let bolinha = new Bolinha("Bolinha");
-        let gato = new Gato("Whiskers");
-        let passaro = new Passaro("Azulão");
-        
-        // Funções para exibir os sons e movimentos
-        function mostrarSom(tipo) {
-        let resultado = document.getElementById("resultado");
-        switch (tipo) {
-        case 'cachorro':
-        resultado.innerText = cachorro.fazerSom();
-        break;
-        case 'max':
-        resultado.innerText = max.fazerSom();
-        break;
-        case 'bolinha':
-        resultado.innerText = bolinha.fazerSom();
-        break;
-        case 'gato':
-        resultado.innerText = gato.fazerSom();
-        break;
-        case 'passaro':
-        resultado.innerText = passaro.fazerSom();
-        break;
-        default:
-        resultado.innerText = animal.fazerSom();
-        break;
-        }
-        }
-        
-        function mostrarMovimento(tipo) {
-        let resultado = document.getElementById("resultado");
-        switch (tipo) {
-        case 'cachorro':
-        resultado.innerText = cachorro.mover();
-        break;
-        case 'max':
-        resultado.innerText = max.mover();
-        break;
-        case 'bolinha':
-        resultado.innerText = bolinha.mover();
-        break;
-        case 'gato':
-        resultado.innerText = gato.mover();
-        break;
-        case 'passaro':
-        resultado.innerText = passaro.mover();
-        break;
-        default:
-        resultado.innerText = animal.mover();
-        break;
-        }
-        }
-        </script>
 
+        // Instâncias
+        const animais = {
+            animal: new Animal("Genérico"),
+            skoob: new Skoob("Skoob"),
+            max: new Max("Max"),
+            bolinha: new Bolinha("Bolinha"),
+            gato: new Gato("Whiskers"),
+            passaro: new Passaro("Azulão")
+        };
+
+        // Funções para Cachorro
+        function getSelectedDog() {
+            const select = document.getElementById('cachorroSelect');
+            return animais[select.value];
+        }
+
+        function mostrarSomCachorro() {
+            const resultado = document.getElementById('resultado');
+            resultado.innerText = getSelectedDog().fazerSom();
+        }
+
+        function mostrarMovimentoCachorro() {
+            const resultado = document.getElementById('resultado');
+            resultado.innerText = getSelectedDog().mover();
+        }
+
+        // Funções gerais
+        function mostrarSom(tipo) {
+            const resultado = document.getElementById('resultado');
+            resultado.innerText = animais[tipo].fazerSom();
+        }
+
+        function mostrarMovimento(tipo) {
+            const resultado = document.getElementById('resultado');
+            resultado.innerText = animais[tipo].mover();
+        }
+    </script>
 </body>
 </html>

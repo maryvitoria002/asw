@@ -1,40 +1,90 @@
+:root {
+    --vermelho-cogumelo: #D32F2F;  
+    --branco-manchas: #FFF3E0;      
+    --bege-caule: #E8D5B5;  
+    --vermelho-escuro: #8B0000;   
+    --sombra-escura: #2C1810;    
+}
+
 body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background-color: #f4f4f4;
+    font-family: 'Merriweather', serif;
+    line-height: 1.6;
+    color: var(--sombra-escura);
+    background-color: var(--branco-manchas);
     padding: 20px;
-    }
-    .container {
+    margin: 0 auto;
+}
+
+h1, h2 {
+    color: var(--vermelho-escuro);
+}
+
+h1 {
+    font-size: 2.8rem;
+    font-family: 'Abril Fatface', cursive;
+    letter-spacing: 1.5px;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
-    }
-    .classe {
-    border: 2px solid #333;
-    background-color: #fff;
-    border-radius: 10px;
-    padding: 20px;
+}
+
+.classe {
+    background: var(--branco-manchas);
+    border-radius: 15px;
+    padding: 25px;
+    border: 2px solid var(--bege-caule);
     width: 250px;
-    text-align: center;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-    }
-    .heranca {
-    border-top: 5px solid #007BFF;
-    }
-    .polimorfismo {
-    border-top: 5px solid #28A745;
-    }
-    button {
-    margin-top: 10px;
-    padding: 10px;
-    font-size: 14px;
-    background-color: #007BFF;
-    color: #fff;
+}
+
+.heranca {
+    border-top: 6px solid var(--vermelho-cogumelo);
+    position: relative;
+    overflow: hidden;
+}
+
+button, select {
+    padding: 12px 25px;
+    border-radius: 8px;
     border: none;
     cursor: pointer;
-    border-radius: 5px;
-    }
-    button:hover {
-    background-color: #0056b3;
-    }
+    margin: 10px 0;
+    width: 100%;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+button {
+    background: var(--vermelho-cogumelo);
+    color: var(--branco-manchas);
+    position: relative;
+    overflow: hidden;
+}
+
+button:hover {
+    background: var(--vermelho-escuro);
+    box-shadow: 4px rgba(211,47,47,0.3);
+}
+
+
+select {
+    background-color: var(--branco-manchas);
+    border: 2px solid var(--bege-caule);
+    color: var(--sombra-escura);
+    padding-right: 35px;
+}
+
+#resultado {
+    margin-top: 2rem;
+    padding: 25px;
+    background-color: var(--branco-manchas);
+    border-radius: 12px;
+    font-size: 1.3rem;
+    border: 2px dashed var(--bege-caule);
+    box-shadow: inset 4px rgba(0, 0, 0, 0.05);
+}
