@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema com POO e Step by step</title>
+    <link rel="stylesheet" href="styless.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>✨ Sistema interativo com POO</h1>
+        
+        <div class="step active" id="step1">
+            <h2>Passo 1: Escolha seu Animal</h2>
+            <div id="animalImages">
+                <img src="./img/peppa-pig.webp" alt="Peppa Pig" onclick="selecionarAnimal('Porco', this)" class="animal-img">
+                <img src="./img/emily-elefante.webp" alt="Emily Elefante" onclick="selecionarAnimal('Elefante', this)" class="animal-img">
+                <img src="./img/danny-cachorro.webp" alt="Danny Cachorro" onclick="selecionarAnimal('Cachorro', this)" class="animal-img">
+                <img src="./img/suzy-ovelha.webp" alt="Suzy Ovelha" onclick="selecionarAnimal('Ovelha', this)" class="animal-img">
+            </div>
+            <button onclick="nextStep(2)">Próximo ➡️</button>
+        </div>
+
+        <div class="step" id="step2">
+            <h2>🎨 Passo 2: Personaliza ele ae</h2>
+            <input type="text" id="animalName" placeholder="Nome do Animal">
+            <input type="color" id="animalColor" value="#ff69b4">
+            <button onclick="nextStep(3)">Só criar ✨</button>
+        </div>
+
+        <div class="step" id="step3">
+            <h2>🎉 Seu bicho tá pronto!</h2>
+            <div id="animal-area">
+                <img id="animal-image" src="" alt="Animal" width="200">
+            </div>
+            <p id="animal-name"></p>
+            <button onclick="animal.fazerSom()">Ouvir Som 🔊</button>
+            <button onclick="animal.mover()">Ver Movimento 🏃♂️</button>
+        </div>
+    </div>
+
+    <script>
+        class Animal {
+            constructor(nome, cor, imagem, tipo) {
+                this.nome = nome;
+                this.cor = cor;
+                this.imagem = imagem;
+                this.tipo = tipo;
+            }
+
+            fazerSom() {
+                throw new Error("Método fazerSom() deve ser implementado");
+            }
+
+            mover() {
+                throw new Error("Método mover() deve ser implementado");
+            }
+
+            get info() {
+                return `
+                    <div class="animal-card" style="background: ${this.cor}30">
+                        <h3>${this.nome}</h3>
+                        <p>Tipo: ${this.tipo}</p>
+                    </div>
+                `;
+            }
+        }
+
+        class Porco extends Animal {
+            fazerSom() {
+                const audio = new Audio('./mp4/peppa-som.mp3');
+                audio.play();
+            }
+
+            mover() {
+                alert(`${this.nome} está sendo porca(o)`);
+            }
+        }
+
+        class Elefante extends Animal {
+            fazerSom() {
+                const audio = new Audio('./mp4/emily-som.mp');
+                audio.play();
+            }
+
+            mover() {
+                alert(`${this.nome} está inseguro(a) com suas orelhas grandes.`);
+            }
+        }
+
+        class Ovelha extends Animal {
+            fazerSom() {
+                const audio = new Audio('./mp4/suzy-som.mp3');
+                audio.play();
+            }
+
+            mover() {
+                alert(`${this.nome} está com as lã tudo embolada!`);
+            }
+        }
+
+        class Cachorro extends Animal {
+            fazerSom() {
+                const audio = new Audio('./mp4/danny-som.mp3');
+                audio.play();
+            }
+
+            mover() {
+                alert(`${this.nome} está chorando cain cain!`);
+            }
+        }
+
+        let animal;
+
+        let tipoAnimalSelecionado;
+
+        function selecionarAnimal(tipo, elemento) {
+            tipoAnimalSelecionado = tipo;
+            
+            const imagens = document.querySelectorAll('.animal-img');
+            imagens.forEach(imagem => imagem.classList.remove('selected'));
+            
+            elemento.classList.add('selected');
+        }
+
+        function nextStep(step) {
+            if(step === 2 && !tipoAnimalSelecionado) {
+                alert("Por favor, escolha um animal");
+                return;
+            }
+
+            document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+            document.getElementById(`step${step}`).classList.add('active');
+
+            if(step === 3) criarAnimal();
+        }
+
+        function criarAnimal() {
+            const nome = document.getElementById('animalName').value || "Sem nome";
+            const cor = document.getElementById('animalColor').value;
+
+            let imagem;
+
+            switch(tipoAnimalSelecionado) {
+                case 'Porco':
+                    imagem = './img/peppa-pig.webp';
+                    animal = new Porco(nome, cor, imagem, 'Porco');
+                    break;
+                case 'Elefante':
+                    imagem = './img/emily-elefante.webp';
+                    animal = new Elefante(nome, cor, imagem, 'Elefante');
+                    break;
+                case 'Ovelha':
+                    imagem = './img/suzy-ovelha.webp';
+                    animal = new Ovelha(nome, cor, imagem, 'Ovelha');
+                    break;
+                case 'Cachorro':
+                    imagem = './img/danny-cachorro.webp';
+                    animal = new Cachorro(nome, cor, imagem, 'Cachorro');
+                    break;
+            }
+
+            document.getElementById('animal-image').src = imagem;
+            document.getElementById('animal-name').innerText = `Nome do Animal: ${nome}`;
+            document.getElementById('animal-area').innerHTML = animal.info;
+        }
+    </script>
+</body>
+</html>

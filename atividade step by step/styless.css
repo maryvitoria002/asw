@@ -1,0 +1,100 @@
+body {
+    font-family: 'Comic Sans MS', cursive;
+    background: #f0f9ff;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(255, 105, 180, 0.2);
+}
+
+/* Estilo dos passos */
+.step {
+    display: none;
+    padding: 20px;
+    background: #fff0f5;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.step.active {
+    display: block;
+    animation: slideIn 0.5s ease;
+}
+
+/* Botões estilo Peppa Pig */
+button {
+    background: #ff69b4;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: transform 0.2s;
+}
+
+button:hover {
+    transform: scale(1.05);
+    background: #ff1493;
+}
+
+/* Área do animal */
+#animal-area {
+    text-align: center;
+    padding: 20px;
+    border: 3px dashed #87ceeb;
+    border-radius: 15px;
+    margin-top: 20px;
+}
+
+.animal-card {
+    display: inline-block;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 15px;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+#animalImages {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.animal-img {
+    width: 190px;
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.3s ease;
+    border-radius: 10px;
+}
+
+.animal-img:hover {
+    transform: scale(1.1);
+}
+
+.selected {
+    border: 2px solid #ff69b4; /* Borda colorida para indicar a seleção */
+    box-shadow: rgba(255, 105, 180, 0.5);
+}
+
+/* Cores temáticas */
+h1, h2 {
+    color: #ff69b4;
+    text-shadow: 2px 2px #87ceeb;
+}
+
+input, select {
+    padding: 8px;
+    border: 2px solid #87ceeb;
+    border-radius: 10px;
+    margin: 5px;
+}
